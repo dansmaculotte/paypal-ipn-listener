@@ -2,11 +2,11 @@
 
 Contributions are **welcome!**
 
-Contributions can be made via a Pull Request on [GitHub](https://github.com/mike182uk/paypal-ipn-listener).
+Contributions can be made via a Pull Request on [GitHub](https://github.com/dansmaculotte/paypal-ipn-listener).
 
 ## Reporting an Issue
 
-Please report issues via the issue tracker on [GitHub](https://github.com/mike182uk/paypal-ipn-listener). For security-related issues, please email the maintainer directly.
+Please report issues via the issue tracker on [GitHub](https://github.com/dansmaculotte/paypal-ipn-listener). For security-related issues, please email the maintainer directly.
 
 ## Pull Requests
 

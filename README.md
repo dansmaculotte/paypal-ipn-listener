@@ -1,9 +1,7 @@
 # PayPal IPN Listener
 
 [![Packagist](https://img.shields.io/packagist/v/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
-[![Build Status](https://img.shields.io/travis/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](http://travis-ci.org/dansmaculotte/paypal-ipn-listener)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://scrutinizer-ci.com/g/dansmaculotte/paypal-ipn-listener/)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/969dd452-b91e-4048-a871-5babcd64b834.svg?style=flat-square)](https://insight.sensiolabs.com/projects/969dd452-b91e-4048-a871-5babcd64b834)
+[![Status](https://github.com/dansmaculotte/paypal-ipn-listener/workflows/ci/badge.svg?branch=master)](https://github.com/dansmaculotte/paypal-ipn-listener/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
 [![License](https://img.shields.io/github/license/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
 
