@@ -69,7 +69,7 @@ class ListenerSpec extends ObjectBehavior
     ): void {
         $verifier->verify(
             Argument::type(Message::class)
-        )->willThrow('UnexpectedValueException');
+        )->willThrow(\UnexpectedValueException::class);
 
         $eventDispatcher->dispatch(
             Argument::type(MessageVerificationFailureEvent::class),
