@@ -23,7 +23,6 @@ before_script:
 script:
   - composer run-script specs-ci
   - composer run-script examples-ci
-  - composer run-script lint
 
 matrix:
   fast_finish: true
