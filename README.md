@@ -1,9 +1,9 @@
 # PayPal IPN Listener
 
-[![Packagist](https://img.shields.io/packagist/v/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
+[![Packagist](https://img.shields.io/packagist/v/dansmaculotte/paypal-ipn-listener.svg)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
 [![Status](https://github.com/dansmaculotte/paypal-ipn-listener/workflows/ci/badge.svg?branch=master)](https://github.com/dansmaculotte/paypal-ipn-listener/actions)
-[![Total Downloads](https://img.shields.io/packagist/dt/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
-[![License](https://img.shields.io/github/license/dansmaculotte/paypal-ipn-listener.svg?style=flat-square)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
+[![Total Downloads](https://img.shields.io/packagist/dt/dansmaculotte/paypal-ipn-listener.svg)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
+[![License](https://img.shields.io/github/license/dansmaculotte/paypal-ipn-listener.svg)](https://packagist.org/packages/dansmaculotte/paypal-ipn-listener)
 
 > A PayPal IPN (Instant Payment Notification) listener for PHP
 
