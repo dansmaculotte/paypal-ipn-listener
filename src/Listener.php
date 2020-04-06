@@ -64,17 +64,26 @@ class Listener
         $this->eventDispatcher->dispatch($event, $eventName);
     }
 
-    public function onVerified(callable $listener): void
+    /**
+     * @param callable $listener
+     */
+    public function onVerified($listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_VERIFIED_EVENT, $listener);
     }
 
-    public function onInvalid(callable $listener): void
+    /**
+     * @param callable $listener
+     */
+    public function onInvalid($listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_INVALID_EVENT, $listener);
     }
 
-    public function onVerificationFailure(callable $listener): void
+    /**
+     * @param callable $listener
+     */
+    public function onVerificationFailure($listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_VERIFICATION_FAILURE_EVENT, $listener);
     }
