@@ -1,0 +1,23 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Test
+        run: |
+          nohup composer run-script mock-server &
+          composer run-script specs-ci
+          composer run-script examples-ci
+        env:
+          MOCK_SERVER_PORT: 3000
