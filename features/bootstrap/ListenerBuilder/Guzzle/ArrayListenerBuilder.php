@@ -2,7 +2,7 @@
 
 namespace ListenerBuilder\Guzzle;
 
-use Mdb\PayPal\Ipn\ListenerBuilder\Guzzle\ArrayListenerBuilder as BaseListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder\Guzzle\ArrayListenerBuilder as BaseListenerBuilder;
 
 class ArrayListenerBuilder extends BaseListenerBuilder
 {
@@ -11,18 +11,12 @@ class ArrayListenerBuilder extends BaseListenerBuilder
      */
     private $serviceEndpoint;
 
-    /**
-     * @param string $serviceEndpoint
-     */
-    public function setServiceEndpoint($serviceEndpoint)
+    public function setServiceEndpoint(string $serviceEndpoint)
     {
         $this->serviceEndpoint = $serviceEndpoint;
     }
 
-    /**
-     * @return string
-     */
-    protected function getServiceEndpoint()
+    protected function getServiceEndpoint(): string
     {
         return $this->serviceEndpoint;
     }

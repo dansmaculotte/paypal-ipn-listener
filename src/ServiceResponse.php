@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdb\PayPal\Ipn;
+namespace DansMaCulotte\PayPal\Ipn;
 
 class ServiceResponse
 {
@@ -9,18 +9,12 @@ class ServiceResponse
      */
     private $body;
 
-    /**
-     * @param $body
-     */
-    public function __construct($body)
+    public function __construct(string $body)
     {
         $this->body = $body;
     }
 
-    /**
-     * @return string
-     */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }

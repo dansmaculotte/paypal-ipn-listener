@@ -1,20 +1,20 @@
 <?php
 
 use Assert\Assertion;
-use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Context\Context;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationFailureEvent;
+use DansMaCulotte\PayPal\Ipn\Listener;
+use DansMaCulotte\PayPal\Ipn\MessageFactory\ArrayMessageFactory;
+use DansMaCulotte\PayPal\Ipn\Service\GuzzleService;
+use DansMaCulotte\PayPal\Ipn\Verifier;
 use GuzzleHttp\Client;
-use Mdb\PayPal\Ipn\MessageFactory\ArrayMessageFactory;
-use Mdb\PayPal\Ipn\Event\MessageVerificationEvent;
-use Mdb\PayPal\Ipn\Event\MessageVerificationFailureEvent;
-use Mdb\PayPal\Ipn\Listener;
-use Mdb\PayPal\Ipn\Service\GuzzleService;
-use Mdb\PayPal\Ipn\Verifier;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class FeatureContext implements SnippetAcceptingContext
+class FeatureContext implements Context
 {
-    const SERVICE_ENDPOINT = 'http://localhost';
-    const SERVICE_ENDPOINT_PORT_ENV_VAR = 'MOCK_SERVER_PORT';
+    public const SERVICE_ENDPOINT = 'http://localhost';
+    public const SERVICE_ENDPOINT_PORT_ENV_VAR = 'MOCK_SERVER_PORT';
 
     /**
      * @var array
@@ -34,7 +34,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @beforeScenario @invalidIpn
      */
-    public function willFailVerification()
+    public function willFailVerification(): void
     {
         $this->ipnMessageData = [
             '__verified' => 0,
@@ -44,7 +44,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @beforeScenario @verifiedIpn
      */
-    public function willPassVerification()
+    public function willPassVerification(): void
     {
         $this->ipnMessageData = [
             '__verified' => 1,
@@ -54,7 +54,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @afterScenario
      */
-    public function resetIpnStatus()
+    public function resetIpnStatus(): void
     {
         $this->invalidIpn = false;
         $this->verifiedIpn = false;
@@ -63,7 +63,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @Given I have received an IPN message
      */
-    public function iHaveReceivedAnIpnMessage()
+    public function iHaveReceivedAnIpnMessage(): void
     {
         $data = [
             'foo' => 'bar',
@@ -76,7 +76,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @When I verify the IPN message with PayPal
      */
-    public function iVerifyTheIpnMessageWithPaypal()
+    public function iVerifyTheIpnMessageWithPaypal(): void
     {
         $listener = $this->getListener();
 
@@ -102,7 +102,7 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @Then PayPal should report that the IPN message is untrustworthy
      */
-    public function paypalShouldReportThatTheIpnMessageIsUntrustworthy()
+    public function paypalShouldReportThatTheIpnMessageIsUntrustworthy(): void
     {
         Assertion::true($this->invalidIpn);
     }
@@ -110,15 +110,12 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @Then PayPal should report that the IPN message is trustworthy
      */
-    public function paypalShouldReportThatTheIpnMessageIsTrustworthy()
+    public function paypalShouldReportThatTheIpnMessageIsTrustworthy(): void
     {
         Assertion::true($this->verifiedIpn);
     }
 
-    /**
-     * @return Listener
-     */
-    protected function getListener()
+    protected function getListener(): Listener
     {
         $service = new GuzzleService(
             new Client(),
@@ -134,10 +131,7 @@ class FeatureContext implements SnippetAcceptingContext
         );
     }
 
-    /**
-     * @return string
-     */
-    protected function getServiceEndpoint()
+    protected function getServiceEndpoint(): string
     {
         return sprintf('%s:%s', self::SERVICE_ENDPOINT, getenv(self::SERVICE_ENDPOINT_PORT_ENV_VAR));
     }

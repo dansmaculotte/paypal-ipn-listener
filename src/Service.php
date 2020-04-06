@@ -1,15 +1,8 @@
 <?php
 
-namespace Mdb\PayPal\Ipn;
+namespace DansMaCulotte\PayPal\Ipn;
 
 interface Service
 {
-    /**
-     * @param Message $message
-     *
-     * @return ServiceResponse
-     *
-     * @throws ServiceException
-     */
-    public function verifyIpnMessage(Message $message);
+    public function verifyIpnMessage(Message $message): ServiceResponse;
 }

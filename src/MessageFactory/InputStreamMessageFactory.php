@@ -1,10 +1,10 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\MessageFactory;
+namespace DansMaCulotte\PayPal\Ipn\MessageFactory;
 
-use Mdb\PayPal\Ipn\InputStream;
-use Mdb\PayPal\Ipn\Message;
-use Mdb\PayPal\Ipn\MessageFactory;
+use DansMaCulotte\PayPal\Ipn\InputStream;
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
 
 class InputStreamMessageFactory implements MessageFactory
 {
@@ -13,18 +13,12 @@ class InputStreamMessageFactory implements MessageFactory
      */
     private $inputStream;
 
-    /**
-     * @param InputStream $inputStream
-     */
     public function __construct(InputStream $inputStream)
     {
         $this->inputStream = $inputStream;
     }
 
-    /**
-     * @return Message
-     */
-    public function createMessage()
+    public function createMessage(): Message
     {
         $streamContents = $this->inputStream->getContents();
 

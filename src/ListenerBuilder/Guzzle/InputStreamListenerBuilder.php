@@ -1,17 +1,15 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\ListenerBuilder\Guzzle;
+namespace DansMaCulotte\PayPal\Ipn\ListenerBuilder\Guzzle;
 
-use Mdb\PayPal\Ipn\InputStream;
-use Mdb\PayPal\Ipn\ListenerBuilder\GuzzleListenerBuilder;
-use Mdb\PayPal\Ipn\MessageFactory\InputStreamMessageFactory;
+use DansMaCulotte\PayPal\Ipn\InputStream;
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder\GuzzleListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
+use DansMaCulotte\PayPal\Ipn\MessageFactory\InputStreamMessageFactory;
 
 class InputStreamListenerBuilder extends GuzzleListenerBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function getMessageFactory()
+    protected function getMessageFactory(): MessageFactory
     {
         return new InputStreamMessageFactory(new InputStream());
     }

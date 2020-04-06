@@ -1,24 +1,25 @@
 <?php
 
-namespace spec\Mdb\PayPal\Ipn\MessageFactory;
+namespace spec\DansMaCulotte\PayPal\Ipn\MessageFactory;
 
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ArrayMessageFactorySpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beConstructedWith(['foo' => 'bar']);
     }
 
-    function it_should_be_a_message_factory()
+    public function it_should_be_a_message_factory(): void
     {
-        $this->shouldHaveType('Mdb\PayPal\Ipn\MessageFactory');
+        $this->shouldHaveType(MessageFactory::class);
     }
 
-    function it_should_create_a_message_from_an_array()
+    public function it_should_create_a_message_from_an_array(): void
     {
-        $this->createMessage()->shouldHaveType('Mdb\PayPal\Ipn\Message');
+        $this->createMessage()->shouldHaveType(Message::class);
     }
 }

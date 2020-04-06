@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\Event;
+namespace DansMaCulotte\PayPal\Ipn\Event;
 
-use Mdb\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\Message;
 
 class MessageVerificationFailureEvent extends MessageVerificationEvent
 {
@@ -11,21 +11,14 @@ class MessageVerificationFailureEvent extends MessageVerificationEvent
      */
     private $error;
 
-    /**
-     * @param Message $message
-     * @param $error
-     */
-    public function __construct(Message $message, $error)
+    public function __construct(Message $message, string $error)
     {
         $this->error = $error;
 
         parent::__construct($message);
     }
 
-    /**
-     * @return string
-     */
-    public function getError()
+    public function getError(): string
     {
         return $this->error;
     }

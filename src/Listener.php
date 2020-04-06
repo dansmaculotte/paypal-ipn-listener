@@ -1,18 +1,18 @@
 <?php
 
-namespace Mdb\PayPal\Ipn;
+namespace DansMaCulotte\PayPal\Ipn;
 
-use Mdb\PayPal\Ipn\Event\MessageInvalidEvent;
-use Mdb\PayPal\Ipn\Event\MessageVerificationFailureEvent;
-use Mdb\PayPal\Ipn\Event\MessageVerifiedEvent;
-use Mdb\PayPal\Ipn\Exception\ServiceException;
+use DansMaCulotte\PayPal\Ipn\Event\MessageInvalidEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationFailureEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerifiedEvent;
+use DansMaCulotte\PayPal\Ipn\Exception\ServiceException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Listener
 {
-    const IPN_VERIFIED_EVENT = 'ipn.message.verified';
-    const IPN_INVALID_EVENT = 'ipn.message.invalid';
-    const IPN_VERIFICATION_FAILURE_EVENT = 'ipn.message.verification_failure';
+    public const IPN_VERIFIED_EVENT = 'ipn.message.verified';
+    public const IPN_INVALID_EVENT = 'ipn.message.invalid';
+    public const IPN_VERIFICATION_FAILURE_EVENT = 'ipn.message.verification_failure';
 
     /**
      * @var MessageFactory
@@ -29,11 +29,6 @@ class Listener
      */
     private $eventDispatcher;
 
-    /**
-     * @param MessageFactory           $messageFactory
-     * @param Verifier                 $verifier
-     * @param EventDispatcherInterface $eventDispatcher
-     */
     public function __construct(
         MessageFactory $messageFactory,
         Verifier $verifier,
@@ -44,7 +39,7 @@ class Listener
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function listen()
+    public function listen(): void
     {
         $message = $this->messageFactory->createMessage();
 
@@ -66,29 +61,20 @@ class Listener
             $event = new MessageVerificationFailureEvent($message, $e->getMessage());
         }
 
-        $this->eventDispatcher->dispatch($eventName, $event);
+        $this->eventDispatcher->dispatch($event, $eventName);
     }
 
-    /**
-     * @param callable $listener
-     */
-    public function onVerified($listener)
+    public function onVerified(callable $listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_VERIFIED_EVENT, $listener);
     }
 
-    /**
-     * @param callable $listener
-     */
-    public function onInvalid($listener)
+    public function onInvalid(callable $listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_INVALID_EVENT, $listener);
     }
 
-    /**
-     * @param callable $listener
-     */
-    public function onVerificationFailure($listener)
+    public function onVerificationFailure(callable $listener): void
     {
         $this->eventDispatcher->addListener(self::IPN_VERIFICATION_FAILURE_EVENT, $listener);
     }

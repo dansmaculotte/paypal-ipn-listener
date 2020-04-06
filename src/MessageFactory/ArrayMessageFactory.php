@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\MessageFactory;
+namespace DansMaCulotte\PayPal\Ipn\MessageFactory;
 
-use Mdb\PayPal\Ipn\Message;
-use Mdb\PayPal\Ipn\MessageFactory;
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
 
 class ArrayMessageFactory implements MessageFactory
 {
@@ -12,18 +12,12 @@ class ArrayMessageFactory implements MessageFactory
      */
     private $data;
 
-    /**
-     * @param array $data
-     */
     public function __construct(array $data)
     {
         $this->data = $data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createMessage()
+    public function createMessage(): Message
     {
         return new Message($this->data);
     }

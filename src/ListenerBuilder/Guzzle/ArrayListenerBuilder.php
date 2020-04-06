@@ -1,9 +1,10 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\ListenerBuilder\Guzzle;
+namespace DansMaCulotte\PayPal\Ipn\ListenerBuilder\Guzzle;
 
-use Mdb\PayPal\Ipn\ListenerBuilder\GuzzleListenerBuilder;
-use Mdb\PayPal\Ipn\MessageFactory\ArrayMessageFactory;
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder\GuzzleListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
+use DansMaCulotte\PayPal\Ipn\MessageFactory\ArrayMessageFactory;
 
 class ArrayListenerBuilder extends GuzzleListenerBuilder
 {
@@ -12,18 +13,12 @@ class ArrayListenerBuilder extends GuzzleListenerBuilder
      */
     private $data = [];
 
-    /**
-     * @param array $data
-     */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = $data;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getMessageFactory()
+    protected function getMessageFactory(): MessageFactory
     {
         return new ArrayMessageFactory($this->data);
     }

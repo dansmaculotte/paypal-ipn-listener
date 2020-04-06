@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\ListenerBuilder;
+namespace DansMaCulotte\PayPal\Ipn\ListenerBuilder;
 
 trait ModeDependentServiceEndpoint
 {
@@ -9,15 +9,12 @@ trait ModeDependentServiceEndpoint
      */
     private $useSandbox = false;
 
-    public function useSandbox()
+    public function useSandbox(): void
     {
         $this->useSandbox = true;
     }
 
-    /**
-     * @return string
-     */
-    protected function getServiceEndpoint()
+    protected function getServiceEndpoint(): string
     {
         return ($this->useSandbox) ?
             'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr' :

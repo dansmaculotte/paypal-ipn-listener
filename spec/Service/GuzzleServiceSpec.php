@@ -1,30 +1,33 @@
 <?php
 
-namespace spec\Mdb\PayPal\Ipn\Service;
+namespace spec\DansMaCulotte\PayPal\Ipn\Service;
 
+use DansMaCulotte\PayPal\Ipn\Exception\ServiceException;
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\Service;
+use DansMaCulotte\PayPal\Ipn\ServiceResponse;
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
-use Mdb\PayPal\Ipn\Message;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Psr\Http\Message\ResponseInterface;
 
 class GuzzleServiceSpec extends ObjectBehavior
 {
-    function let(ClientStub $httpClient)
+    public function let(ClientStub $httpClient): void
     {
         $this->beConstructedWith($httpClient, 'http://foo.bar');
     }
 
-    function it_should_be_a_service()
+    public function it_should_be_a_service(): void
     {
-        $this->shouldHaveType('Mdb\PayPal\Ipn\Service');
+        $this->shouldHaveType(Service::class);
     }
 
-    function it_should_return_a_service_response_when_verifying_an_ipn_message(
+    public function it_should_return_a_service_response_when_verifying_an_ipn_message(
         ClientStub $httpClient,
         Message $message,
         ResponseInterface $response
-    ) {
+    ): void {
         $response->getBody()->willReturn('foo');
 
         $httpClient->post(
@@ -36,14 +39,14 @@ class GuzzleServiceSpec extends ObjectBehavior
 
         $response = $this->verifyIpnMessage($message);
 
-        $response->shouldHaveType('Mdb\PayPal\Ipn\ServiceResponse');
+        $response->shouldHaveType(ServiceResponse::class);
         $response->getBody()->shouldReturn('foo');
     }
 
-    function it_should_throw_a_service_exception_when_a_request_fails(
+    public function it_should_throw_a_service_exception_when_a_request_fails(
         ClientStub $httpClient,
         Message $message
-    ) {
+    ): void {
         $httpClient->post(
             Argument::type('string'),
             Argument::type('array')
@@ -51,10 +54,13 @@ class GuzzleServiceSpec extends ObjectBehavior
 
         $message->getAll()->willReturn(['foo' => 'bar']);
 
-        $this->shouldThrow('Mdb\PayPal\Ipn\Exception\ServiceException')->during('verifyIpnMessage', [$message]);
+        $this->shouldThrow(ServiceException::class)->during('verifyIpnMessage', [$message]);
     }
 }
 
-class ClientStub extends Client {
-    public function post() {}
+class ClientStub extends Client
+{
+    public function post()
+    {
+    }
 }

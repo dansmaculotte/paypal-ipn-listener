@@ -1,11 +1,8 @@
 <?php
 
-namespace Mdb\PayPal\Ipn;
+namespace DansMaCulotte\PayPal\Ipn;
 
 interface MessageFactory
 {
-    /**
-     * @return Message
-     */
-    public function createMessage();
+    public function createMessage(): Message;
 }

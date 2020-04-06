@@ -1,33 +1,34 @@
 <?php
 
-namespace spec\Mdb\PayPal\Ipn\MessageFactory;
+namespace spec\DansMaCulotte\PayPal\Ipn\MessageFactory;
 
-use Mdb\PayPal\Ipn\InputStream;
+use DansMaCulotte\PayPal\Ipn\InputStream;
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\MessageFactory;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class InputStreamMessageFactorySpec extends ObjectBehavior
 {
-    function let(InputStream $inputStream)
+    public function let(InputStream $inputStream): void
     {
         $this->beConstructedWith($inputStream);
     }
 
-    function it_should_be_a_message_factory()
+    public function it_should_be_a_message_factory(): void
     {
-        $this->shouldHaveType('Mdb\PayPal\Ipn\MessageFactory');
+        $this->shouldHaveType(MessageFactory::class);
     }
 
-    function it_should_create_a_message_from_the_input_stream(InputStream $inputStream)
+    public function it_should_create_a_message_from_the_input_stream(InputStream $inputStream): void
     {
         $streamContents = 'foo=bar&baz=quz';
 
         $inputStream->getContents()->willReturn($streamContents);
 
-        $this->createMessage()->shouldHaveType('Mdb\PayPal\Ipn\Message');
+        $this->createMessage()->shouldHaveType(Message::class);
     }
 
-    function it_should_url_decode_values_from_the_input_stream(InputStream $inputStream)
+    public function it_should_url_decode_values_from_the_input_stream(InputStream $inputStream): void
     {
         $streamContents = 'foo=bar&baz=quz%2Bfoo%2B%28bar%29';
 

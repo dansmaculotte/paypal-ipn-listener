@@ -1,30 +1,31 @@
 <?php
 
-namespace spec\Mdb\PayPal\Ipn\Event;
+namespace spec\DansMaCulotte\PayPal\Ipn\Event;
 
-use Mdb\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationEvent;
+use DansMaCulotte\PayPal\Ipn\Message;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class MessageVerificationFailureEventSpec extends ObjectBehavior
 {
-    function let(Message $message)
+    public function let(Message $message): void
     {
         $this->beConstructedWith($message, 'foo');
     }
 
-    function it_should_be_an_event()
+    public function it_should_be_an_event(): void
     {
-        $this->shouldHaveType('Symfony\Component\EventDispatcher\Event');
-        $this->shouldHaveType('Mdb\PayPal\Ipn\Event\MessageVerificationEvent');
+        $this->shouldHaveType(Event::class);
+        $this->shouldHaveType(MessageVerificationEvent::class);
     }
 
-    function it_should_retrieve_an_ipn_message(Message $message)
+    public function it_should_retrieve_an_ipn_message(Message $message): void
     {
         $this->getMessage()->shouldReturn($message);
     }
 
-    function it_should_retrieve_an_error_message()
+    public function it_should_retrieve_an_error_message(): void
     {
         $this->getError()->shouldReturn('foo');
     }

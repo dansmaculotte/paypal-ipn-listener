@@ -1,12 +1,12 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\Service;
+namespace DansMaCulotte\PayPal\Ipn\Service;
 
+use DansMaCulotte\PayPal\Ipn\Exception\ServiceException;
+use DansMaCulotte\PayPal\Ipn\Message;
+use DansMaCulotte\PayPal\Ipn\Service;
+use DansMaCulotte\PayPal\Ipn\ServiceResponse;
 use GuzzleHttp\ClientInterface;
-use Mdb\PayPal\Ipn\Exception\ServiceException;
-use Mdb\PayPal\Ipn\Message;
-use Mdb\PayPal\Ipn\Service;
-use Mdb\PayPal\Ipn\ServiceResponse;
 
 class GuzzleService implements Service
 {
@@ -20,20 +20,13 @@ class GuzzleService implements Service
      */
     private $serviceEndpoint;
 
-    /**
-     * @param ClientInterface $httpClient
-     * @param string          $serviceEndpoint
-     */
-    public function __construct(ClientInterface $httpClient, $serviceEndpoint)
+    public function __construct(ClientInterface $httpClient, string $serviceEndpoint)
     {
         $this->httpClient = $httpClient;
         $this->serviceEndpoint = $serviceEndpoint;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function verifyIpnMessage(Message $message)
+    public function verifyIpnMessage(Message $message): ServiceResponse
     {
         $requestBody = array_merge(
             ['cmd' => '_notify-validate'],

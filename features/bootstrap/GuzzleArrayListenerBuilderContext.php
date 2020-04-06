@@ -1,5 +1,6 @@
 <?php
 
+use DansMaCulotte\PayPal\Ipn\Listener;
 use ListenerBuilder\Guzzle\ArrayListenerBuilder;
 
 class GuzzleArrayListenerBuilderContext extends FeatureContext
@@ -7,7 +8,7 @@ class GuzzleArrayListenerBuilderContext extends FeatureContext
     /**
      * {@inheritdoc}
      */
-    protected function getListener()
+    protected function getListener(): Listener
     {
         $listenerBuilder = new ArrayListenerBuilder();
 

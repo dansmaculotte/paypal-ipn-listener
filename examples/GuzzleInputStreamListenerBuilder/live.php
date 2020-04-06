@@ -2,7 +2,10 @@
 
 require '../../vendor/autoload.php';
 
-use Mdb\PayPal\Ipn\ListenerBuilder\Guzzle\InputStreamListenerBuilder as ListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\Event\MessageInvalidEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationFailureEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerifiedEvent;
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder\Guzzle\InputStreamListenerBuilder as ListenerBuilder;
 
 $listener = (new ListenerBuilder())->build();
 

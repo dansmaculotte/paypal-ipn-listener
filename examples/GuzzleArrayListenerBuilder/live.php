@@ -2,18 +2,18 @@
 
 require '../../vendor/autoload.php';
 
-use Mdb\PayPal\Ipn\Event\MessageInvalidEvent;
-use Mdb\PayPal\Ipn\Event\MessageVerificationFailureEvent;
-use Mdb\PayPal\Ipn\Event\MessageVerifiedEvent;
-use Mdb\PayPal\Ipn\ListenerBuilder\Guzzle\ArrayListenerBuilder as ListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\Event\MessageInvalidEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerificationFailureEvent;
+use DansMaCulotte\PayPal\Ipn\Event\MessageVerifiedEvent;
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder\Guzzle\ArrayListenerBuilder as ListenerBuilder;
 
 $listenerBuilder = new ListenerBuilder();
 
 // make sure this is actually the data you recieved from PayPal...
-$data = array(
+$data = [
     'foo' => 'bar',
     'bar' => 'baz',
-);
+];
 
 $listenerBuilder->setData($data);
 

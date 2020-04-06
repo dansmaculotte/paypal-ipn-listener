@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\Event;
+namespace DansMaCulotte\PayPal\Ipn\Event;
 
 class MessageInvalidEvent extends MessageVerificationEvent
 {

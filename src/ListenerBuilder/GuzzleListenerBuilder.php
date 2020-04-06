@@ -1,19 +1,17 @@
 <?php
 
-namespace Mdb\PayPal\Ipn\ListenerBuilder;
+namespace DansMaCulotte\PayPal\Ipn\ListenerBuilder;
 
+use DansMaCulotte\PayPal\Ipn\ListenerBuilder;
+use DansMaCulotte\PayPal\Ipn\Service;
+use DansMaCulotte\PayPal\Ipn\Service\GuzzleService;
 use GuzzleHttp\Client;
-use Mdb\PayPal\Ipn\ListenerBuilder;
-use Mdb\PayPal\Ipn\Service\GuzzleService;
 
 abstract class GuzzleListenerBuilder extends ListenerBuilder
 {
     use ModeDependentServiceEndpoint;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getService()
+    protected function getService(): Service
     {
         return new GuzzleService(
             new Client(),
