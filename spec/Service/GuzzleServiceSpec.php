@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class GuzzleServiceSpec extends ObjectBehavior
 {
-    public function let(ClientStub $httpClient): void
+    public function let(ClientStub $httpClient)
     {
         $this->beConstructedWith($httpClient, 'http://foo.bar');
     }
@@ -23,11 +23,8 @@ class GuzzleServiceSpec extends ObjectBehavior
         $this->shouldHaveType(Service::class);
     }
 
-    public function it_should_return_a_service_response_when_verifying_an_ipn_message(
-        ClientStub $httpClient,
-        Message $message,
-        ResponseInterface $response
-    ): void {
+    public function it_should_return_a_service_response_when_verifying_an_ipn_message(ClientStub $httpClient, Message $message, ResponseInterface $response)
+    {
         $response->getBody()->willReturn('foo');
 
         $httpClient->post(
@@ -43,10 +40,8 @@ class GuzzleServiceSpec extends ObjectBehavior
         $response->getBody()->shouldReturn('foo');
     }
 
-    public function it_should_throw_a_service_exception_when_a_request_fails(
-        ClientStub $httpClient,
-        Message $message
-    ): void {
+    public function it_should_throw_a_service_exception_when_a_request_fails(ClientStub $httpClient, Message $message)
+    {
         $httpClient->post(
             Argument::type('string'),
             Argument::type('array')
@@ -60,7 +55,8 @@ class GuzzleServiceSpec extends ObjectBehavior
 
 class ClientStub extends Client
 {
-    public function post()
+    public function post($uri, array $options = []): ResponseInterface
     {
+        return parent::post($uri, $options);
     }
 }
