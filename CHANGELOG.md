@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.3](https://github.com/dansmaculotte/paypal-ipn-listener/compare/v1.0.2...v1.0.3) (2020-11-19)
 
+### [1.0.3](https://github.com/dansmaculotte/paypal-ipn-listener/compare/v1.0.2...v1.0.3) (2020-11-19)
+
 ### [1.0.3](https://github.com/dansmaculotte/paypal-ipn-listener/compare/v1.0.2...v1.0.3) (2020-11-18)
 
 ### [1.0.2](https://github.com/dansmaculotte/paypal-ipn-listener/compare/v1.0.1...v1.0.2) (2020-11-18)
